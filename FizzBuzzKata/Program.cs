@@ -22,13 +22,19 @@ namespace FizzBuzzKata
 		{
 			for (int i = 1; i <= Number; i++)
 			{
-				if (DivisibleByThree(i))
+				if (DivisibleByThree(i) & DivisibleByFive(i))
+				{
+					Console.WriteLine("FizzBuzz");
+				}
+				else if (DivisibleByThree(i))
 				{
 					Console.WriteLine ("Fizz");
-				} else if (DivisibleByFive(i))
+				}
+				else if (DivisibleByFive(i))
 				{
 					Console.WriteLine("Buzz");
-				} else
+				}
+				else
 				{
 					Console.WriteLine(i);
 				}

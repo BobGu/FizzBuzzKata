@@ -53,6 +53,19 @@ namespace FizzBuzzKataTests
 				StringAssert.AreEqualIgnoringCase("1 2 Fizz 4 Buzz Fizz", output);
 			}
 		}
+
+		[Test]
+		public void PrintsFizzBuzz()
+		{
+			using (StringWriter sw = new StringWriter ())
+			{
+				int Number = 15;
+				Console.SetOut (sw);
+				FizzBuzz.Evaluate (Number);
+				string output = sw.ToString().Replace("\n", " ").Trim();
+				StringAssert.AreEqualIgnoringCase("1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz", output);
+			}
+		}
 	}
 }
 
