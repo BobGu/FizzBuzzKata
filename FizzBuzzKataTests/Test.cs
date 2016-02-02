@@ -23,16 +23,35 @@ namespace FizzBuzzKataTests
 		[Test]
 		public void PrintsFizz ()
 		{
-			int Number = 6;
-			Process p = new Process ();
-			p.StartInfo.FileName = "ipconfig";
-			p.StartInfo.UseShellExecute = false;
-			p.StartInfo.RedirectStandardOutput = true;
-			p.Start ();
-			string output = p.StandardOutput.ReadToEnd ();
-			p.WaitForExit ();
-			FizzBuzz.Evaluate (Number);
-			StringAssert.Contains (output, "1 2 Fizz 4 5 Fizz");
+			using (StringWriter sw = new StringWriter ())
+			{
+				int Number = 4;
+				Console.SetOut (sw);
+				FizzBuzz.Evaluate (Number);
+				string output = sw.ToString().Replace("\n", " ").Trim ();
+				StringAssert.AreEqualIgnoringCase("1 2 Fizz 4", output);
+			}
+		}
+
+		[Test]
+		public void CanDivideByFive ()
+		{
+			int Number = 5;
+			bool Result = FizzBuzz.DivisibleByFive (Number);
+			Assert.IsTrue (Result, "Should return true when divisible by 5");
+		}
+
+		[Test]
+		public void PrintsFizzOrBuzz ()
+		{
+			using (StringWriter sw = new StringWriter ())
+			{
+				int Number = 6;
+				Console.SetOut (sw);
+				FizzBuzz.Evaluate (Number);
+				string output = sw.ToString().Replace("\n", " ").Trim ();
+				StringAssert.AreEqualIgnoringCase("1 2 Fizz 4 Buzz Fizz", output);
+			}
 		}
 	}
 }
